@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TruthLens</title>
+  <link rel="stylesheet" href="static/css/style.css" />
 </head>
 <body>
-    
+
+  <header>
+    <div class="logo">TruthLens</div>
+    <div class="tagline">Misinformation Detection in Regional Languages</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Is it <span class="highlight">true?</span></h1>
+      <p class="sub">Paste any text in English or Marathi. We'll tell you if it's misleading — and why.</p>
+    </section>
+
+    <section class="input-section">
+      <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="mr">Marathi</button>
+      </div>
+
+      <textarea id="inputText" placeholder="Paste or type your text here..."></textarea>
+
+      <div class="char-count"><span id="charCount">0</span> characters</div>
+
+      <button id="analyzeBtn" class="analyze-btn">Analyze Text</button>
+    </section>
+
+    <section class="result-section" id="resultSection">
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <div class="verdict" id="verdict"></div>
+          <div class="confidence" id="confidence"></div>
+        </div>
+        <div class="explanation" id="explanation"></div>
+        <div class="flagged-words-label">Flagged phrases:</div>
+        <div class="flagged-words" id="flaggedWords"></div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-text">
+            <strong>Input</strong>
+            <p>Paste text in English or Marathi</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-text">
+            <strong>Analyze</strong>
+            <p>Our model checks for misleading patterns</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-text">
+            <strong>Explain</strong>
+            <p>Get a verdict with a clear reason</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by <strong>3xDevs</strong> · BFB'26 · MIT, Chhatrapati Sambhajinagar</p>
+  </footer>
+
+  <script src="static/js/main.js"></script>
 </body>
 </html>
