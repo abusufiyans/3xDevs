@@ -25,12 +25,14 @@ header {
 .logo {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1a73e8;
+  color: #000000;
+  text-align: center;
 }
 
 .tagline {
-  font-size: 0.8rem;
-  color: #888;
+  font-size: 1.2rem;
+  color: #000000;
+  text-align: center;
 }
 
 main {
@@ -49,7 +51,7 @@ main {
 }
 
 .hero h1 span {
-  color: #1a73e8;
+  color: #000000;
 }
 
 .sub {
@@ -58,7 +60,6 @@ main {
   line-height: 1.6;
 }
 
-/* Input */
 .input-section {
   background: #fff;
   border: 1px solid #ddd;
@@ -76,7 +77,7 @@ main {
 
 .lang-btn {
   padding: 5px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #f0e4e4;
   background: #fff;
   border-radius: 4px;
   font-size: 0.82rem;
@@ -85,9 +86,14 @@ main {
 }
 
 .lang-btn.active {
-  background: #1a73e8;
-  color: #fff;
-  border-color: #1a73e8;
+  padding: 5px 14px;
+  border: 1px solid #f0e4e4;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: #444;
+  
 }
 
 textarea {
@@ -117,7 +123,7 @@ textarea:focus {
 
 .analyze-btn {
   padding: 10px 22px;
-  background: #1a73e8;
+  background: #000000;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -128,7 +134,7 @@ textarea:focus {
 }
 
 .analyze-btn:hover {
-  background: #1558b0;
+  background: #000000;
 }
 
 .analyze-btn:disabled {
@@ -136,7 +142,6 @@ textarea:focus {
   cursor: not-allowed;
 }
 
-/* Result */
 .result-section {
   display: none;
 }
@@ -210,7 +215,6 @@ textarea:focus {
   border-radius: 4px;
 }
 
-/* How it works */
 .how-it-works h2 {
   font-size: 0.85rem;
   color: #999;
