@@ -1,81 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SatyaCheck</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SatyaCheck — Detect misinformation in English and Marathi. Paste text and get an instant verdict with explanation." />
+  <title>SatyaCheck — Misinformation Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="static/css/style.css" />
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">SatyaCheck</div>
-    <div class="tagline">Misinformation Detection in Regional Languages</div>
+  <!-- ───── Header ───── -->
+  <header id="site-header">
+    <div class="header-inner">
+      <div class="logo" id="logo">
+        <span class="logo-icon">◉</span>
+        <span class="logo-text">SatyaCheck</span>
+      </div>
+      <nav class="header-nav">
+        <a href="#input-section" class="nav-link">Analyze</a>
+        <a href="#how-section" class="nav-link">How It Works</a>
+        <span class="status-pill" id="statusPill">
+          <span class="status-dot"></span>
+          Engine ready
+        </span>
+      </nav>
+    </div>
   </header>
 
+  <!-- ───── Main ───── -->
   <main>
-    <section class="hero">
-      <h1>Is it <span class="highlight">true?</span></h1>
-      <p class="sub">Paste any text in English or Marathi. We'll tell you if it's misleading — and why.</p>
+
+    <!-- Hero -->
+    <section class="hero" id="hero-section">
+      <p class="hero-label">Misinformation Detection</p>
+      <h1>Is it <span class="hero-accent">true</span>?</h1>
+      <p class="hero-sub">
+        Paste any text in <strong>English</strong> or <strong>Marathi</strong>. We analyze it for misleading patterns
+        and explain our reasoning — instantly, offline, no sign-up.
+      </p>
     </section>
 
-    <section class="input-section">
-      <div class="language-toggle">
-        <button class="lang-btn active" data-lang="en">English</button>
-        <button class="lang-btn" data-lang="mr">Marathi</button>
+    <!-- Input -->
+    <section class="input-section" id="input-section">
+      <div class="input-card">
+        <div class="input-top-bar">
+          <div class="language-toggle" id="langToggle">
+            <button class="lang-btn active" data-lang="en" id="lang-en">
+              <span class="lang-flag">EN</span> English
+            </button>
+            <button class="lang-btn" data-lang="mr" id="lang-mr">
+              <span class="lang-flag">MR</span> मराठी
+            </button>
+          </div>
+          <div class="char-count"><span id="charCount">0</span> / 5 000</div>
+        </div>
+
+        <textarea id="inputText" placeholder="Paste or type your text here..." maxlength="5000"
+          spellcheck="false"></textarea>
+
+        <div class="input-actions">
+          <button id="clearBtn" class="clear-btn" title="Clear text">✕ Clear</button>
+          <button id="analyzeBtn" class="analyze-btn">
+            <span class="btn-label">Analyze Text</span>
+            <span class="btn-loader" id="btnLoader"></span>
+          </button>
+        </div>
       </div>
-
-      <textarea id="inputText" placeholder="Paste or type your text here..."></textarea>
-
-      <div class="char-count"><span id="charCount">0</span> characters</div>
-
-      <button id="analyzeBtn" class="analyze-btn">Analyze Text</button>
     </section>
 
+    <!-- Result -->
     <section class="result-section" id="resultSection">
       <div class="result-card" id="resultCard">
         <div class="result-header">
-          <div class="verdict" id="verdict"></div>
+          <div class="verdict-group">
+            <span class="verdict-icon" id="verdictIcon"></span>
+            <span class="verdict" id="verdict"></span>
+          </div>
           <div class="confidence" id="confidence"></div>
         </div>
+
+        <div class="result-divider"></div>
+
         <div class="explanation" id="explanation"></div>
-        <div class="flagged-words-label">Flagged phrases:</div>
-        <div class="flagged-words" id="flaggedWords"></div>
+
+        <div class="flagged-section" id="flaggedSection">
+          <div class="flagged-label">Flagged phrases</div>
+          <div class="flagged-words" id="flaggedWords"></div>
+        </div>
       </div>
     </section>
 
-    <section class="how-it-works">
-      <h2>How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-text">
-            <strong>Input</strong>
-            <p>Paste text in English or Marathi</p>
-          </div>
+    <!-- How it works -->
+    <section class="how-section" id="how-section">
+      <h2 class="section-title">How it works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <strong>Input</strong>
+          <p>Paste or type content in English or Marathi. Our system accepts up to 5 000 characters.</p>
         </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-text">
-            <strong>Analyze</strong>
-            <p>Our model checks for misleading patterns</p>
-          </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <strong>Analyze</strong>
+          <p>A multi-signal heuristic engine scans for sensationalist keywords, urgency cues, and forwarding patterns.
+          </p>
         </div>
-        <div class="step">
-          <div class="step-number"></div>
-          <div class="step-text">
-            <strong>Explain</strong>
-            <p>Get a verdict with a clear reason</p>
-          </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <strong>Explain</strong>
+          <p>You receive a clear verdict — credible, uncertain, or misinformation — with a plain-language explanation.
+          </p>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer>
+  <!-- ───── Footer ───── -->
+  <footer id="site-footer">
     <p>Built by <strong>3xDevs</strong> · BFB'26 · MIT, Chhatrapati Sambhajinagar</p>
   </footer>
 
   <script src="static/js/main.js"></script>
 </body>
+
 </html>
