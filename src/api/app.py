@@ -65,17 +65,30 @@ def detect_misinformation(req: DetectRequest):
     - **text**: The content to analyze (1–5000 characters).
     - **language**: ``en`` (English) or ``mr`` (Marathi).
     """
+    from src.detector.llm_verifier import check_authenticity_with_llm
+
     if not req.text.strip():
         raise HTTPException(status_code=400, detail="Text cannot be empty.")
 
-    result = detect(req.text, req.language)
-    explanation_text = explain(result, req.language)
+    # Try LLM first
+    llm_result = check_authenticity_with_llm(req.text, req.language)
+    
+    # If LLM verification is unavailable, fallback to heuristic model
+    if "LLM verification is currently unavailable" in llm_result["explanation"] or "An error occurred" in llm_result["explanation"]:
+        result = detect(req.text, req.language)
+        explanation_text = explain(result, req.language)
+        return DetectResponse(
+            verdict=result.verdict,
+            confidence=result.confidence,
+            explanation=explanation_text,
+            flagged=result.flagged,
+        )
 
     return DetectResponse(
-        verdict=result.verdict,
-        confidence=result.confidence,
-        explanation=explanation_text,
-        flagged=result.flagged,
+        verdict=llm_result["verdict"],
+        confidence=llm_result["confidence"],
+        explanation=llm_result["explanation"],
+        flagged=llm_result["flagged"],
     )
 
 
