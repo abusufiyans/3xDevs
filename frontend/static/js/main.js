@@ -1,4 +1,3 @@
-// Language toggle
 const langBtns = document.querySelectorAll('.lang-btn');
 let selectedLang = 'en';
 
@@ -10,14 +9,13 @@ langBtns.forEach(function(btn) {
 
     var textarea = document.getElementById('inputText');
     if (selectedLang === 'mr') {
-      textarea.placeholder = 'येथे मजकूर पेस्ट करा किंवा टाइप करा...';
+      
     } else {
-      textarea.placeholder = 'Paste or type your text here...';
+      
     }
   });
 });
 
-// Character count
 var inputText = document.getElementById('inputText');
 var charCount = document.getElementById('charCount');
 
@@ -25,7 +23,6 @@ inputText.addEventListener('input', function() {
   charCount.textContent = inputText.value.length;
 });
 
-// Analyze button click
 var analyzeBtn = document.getElementById('analyzeBtn');
 var resultSection = document.getElementById('resultSection');
 
@@ -54,7 +51,6 @@ analyzeBtn.addEventListener('click', async function() {
     showResult(data);
 
   } catch (err) {
-    // backend not connected yet, use mock
     var mockData = getMockResult(text);
     showResult(mockData);
   }
@@ -63,7 +59,6 @@ analyzeBtn.addEventListener('click', async function() {
   analyzeBtn.disabled = false;
 });
 
-// Show result on page
 function showResult(data) {
   var resultCard = document.getElementById('resultCard');
   var verdictEl = document.getElementById('verdict');
@@ -98,7 +93,6 @@ function showResult(data) {
   resultSection.classList.add('visible');
 }
 
-// Mock result for demo when backend is offline
 function getMockResult(text) {
   var lower = text.toLowerCase();
   var keywords = ['cure', 'secret', 'banned', 'miracle', 'shocking', 'forward this', 'viral', 'पसरवा', 'चमत्कार'];
@@ -110,26 +104,4 @@ function getMockResult(text) {
     }
   }
 
-  if (found.length >= 2) {
-    return {
-      verdict: 'fake',
-      confidence: 85,
-      explanation: 'This text contains multiple patterns commonly found in misinformation — sensational language and unverified claims that are meant to trigger emotional sharing.',
-      flagged: found
-    };
-  } else if (found.length === 1) {
-    return {
-      verdict: 'uncertain',
-      confidence: 52,
-      explanation: 'Some patterns were detected that could indicate misleading content. Verify this through a trusted source before sharing.',
-      flagged: found
-    };
-  } else {
-    return {
-      verdict: 'real',
-      confidence: 90,
-      explanation: 'No major misinformation patterns were detected. The text does not contain sensational or emotionally manipulative language.',
-      flagged: []
-    };
-  }
 }
